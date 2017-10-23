@@ -6,15 +6,21 @@ a validation package for simple text inputs
 * street address 
 * apartment numbers
 
-## goals
-1. create underlying methods that return specif errors related to their regex test
-2. pass bools and errors through channels
-3. have the pubic methods check channels for responses 
-4. Public methods will return an error or nil to the end user
+## usage
+Currently, for each method call you must enter a reference to a string value `&value`, and a min and max length value.
 
-### things to think about
-* possibly add go routines to each function call in the variadic Run function
-    * create a new error channel `errors = make(chan error, len(funcs))`
-    * return an error or nil to the channel `errChan <- go f() return ` 
-    * watch channel for errors 
-    *maybe overkill :-) 
+```go
+package main 
+import (
+	"isValid"
+	"fmt"
+)
+
+var t = "HelloWorld"
+
+func ValidateSomething(){
+	if err:= isValid.Length(&t,1,10); err != nil {
+    	fmt.Println(err.Error())
+    }
+}
+```
